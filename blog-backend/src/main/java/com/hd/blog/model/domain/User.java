@@ -84,7 +84,7 @@ public class User extends BaseModel {
     @JsonIgnore
     private LocalDateTime lastModifiedDate = LocalDateTime.now();
 
-    public User() {}
+    protected User() {}
 
     public User(Long id) {
         this.id = id;
