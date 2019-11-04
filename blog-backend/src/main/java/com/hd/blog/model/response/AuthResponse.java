@@ -10,7 +10,7 @@ public class AuthResponse {
         this.accessToken = accessToken;
     }
 
-    public String getAccessToken() {
+    public String getAccessToken() throws ClassNotFoundException {
         return accessToken;
     }
 
