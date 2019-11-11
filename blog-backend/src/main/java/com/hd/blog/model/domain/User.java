@@ -2,6 +2,7 @@ package com.hd.blog.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hd.blog.model.BaseModel;
+import lombok.Builder;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -19,6 +20,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "user")
 @Getter
+@Builder
 public class User extends BaseModel {
 
     @Id
@@ -93,6 +95,10 @@ public class User extends BaseModel {
     public User(Long id, String userName) {
         this.id = id;
         this.userName = userName;
+    }
+
+    public void setEmail( String email ) {
+        this.email = email;
     }
 
     @Override
