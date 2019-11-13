@@ -2,8 +2,10 @@ package com.hd.blog.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hd.blog.model.BaseModel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -21,6 +23,8 @@ import java.util.Objects;
 @Table(name = "user")
 @Getter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User extends BaseModel {
 
     @Id
@@ -44,8 +48,8 @@ public class User extends BaseModel {
 
     private String imageUrl;
 
-    @NotNull
-    @Enumerated(EnumType.STRING)
+//    @NotNull
+//    @Enumerated(EnumType.STRING)
     private AuthProvider provider;
 
     private String providerId;
@@ -86,14 +90,18 @@ public class User extends BaseModel {
     @JsonIgnore
     private LocalDateTime lastModifiedDate = LocalDateTime.now();
 
-    protected User() {}
-
     public User(Long id) {
         this.id = id;
     }
 
     public User(Long id, String userName) {
         this.id = id;
+        this.userName = userName;
+    }
+
+    public User(String email, String password, String userName){
+        this.email = email;
+        this.password = password;
         this.userName = userName;
     }
 

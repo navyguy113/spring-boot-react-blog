@@ -5,9 +5,14 @@ import com.hd.blog.model.domain.User;
 import com.hd.blog.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -26,7 +31,7 @@ public class UserService {
     //TODO
 
     public User registerAccount(User user){
-        userRepository.findByEmail((user.getEmail()))
+        userRepository.findByEmail(user.getEmail())
                 .ifPresent(user1 -> {
                    throw new ApiException("Email Already exists.", HttpStatus.BAD_REQUEST);
                 });
@@ -34,12 +39,16 @@ public class UserService {
         return this.createUser(user.getEmail().toLowerCase(), user.getPassword(), user.getUserName());
     }
 
+    public Optional<User> findByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
+
     public User createUser(String email, String password, String userName){
         User newUser = User.builder()
                            .email(email)
                            .password(password)
                            .userName(userName)
-                           .provider(null)
+//                           .provider(null)
                            .build();
         //TODO : Authority
         userRepository.save(newUser);
@@ -55,6 +64,19 @@ public class UserService {
         }));
     }
 
-    //TODO
+    public Page<User> findAllUser(Pageable pageable){
+        return userRepository.findAll(pageable);
+    }
+
+    public void deleteUser(Long userId){
+        userRepository.findOneById(userId).ifPresent(user -> {
+            userRepository.deleteById(userId);
+        });
+    }
+
+    public List<String> getAuthorities(){
+        //TODO
+        return null;
+    }
 
 }
