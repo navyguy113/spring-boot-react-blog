@@ -1,7 +1,9 @@
 package com.hd.blog.service;
 
 import com.hd.blog.common.Exception.ApiException;
+import com.hd.blog.model.domain.Authority;
 import com.hd.blog.model.domain.User;
+import com.hd.blog.repository.AuthorityRepository;
 import com.hd.blog.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -21,14 +24,15 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    private final AuthorityRepository authorityRepository;
+
     private PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService( UserRepository userRepository, AuthorityRepository authorityRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.authorityRepository = authorityRepository;
         this.passwordEncoder = passwordEncoder;
     }
-
-    //TODO
 
     public User registerAccount(User user){
         userRepository.findByEmail(user.getEmail())
@@ -75,8 +79,7 @@ public class UserService {
     }
 
     public List<String> getAuthorities(){
-        //TODO
-        return null;
+        return authorityRepository.findAll().stream().map(Authority::getName).collect(Collectors.toList());
     }
 
 }
