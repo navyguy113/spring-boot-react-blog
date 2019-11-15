@@ -54,7 +54,7 @@ public class Post {
     @Column(name = "last_modified_date")
     private LocalDateTime lastModifiedDate = LocalDateTime.now();
 
-    protected Post() {}
+    public Post() {}
 
     public Post(Long id) {
         this.id = id;
@@ -114,5 +114,17 @@ public class Post {
 
     public void setLastModifiedDate( LocalDateTime lastModifiedDate ) {
         this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public void setUser( User user ) {
+        this.user = user;
+    }
+
+    public void setCreatedBy( String createdBy ) {
+        this.createdBy = createdBy;
+    }
+
+    public void setCreatedDate( LocalDateTime createdDate ) {
+        this.createdDate = createdDate;
     }
 }
