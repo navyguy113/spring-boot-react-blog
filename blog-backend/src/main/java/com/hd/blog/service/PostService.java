@@ -30,8 +30,8 @@ public class PostService {
         newPost.setBody(post.getBody());
         newPost.setCreatedBy(customUserDetails.getName());
         newPost.setCreatedDate(LocalDateTime.now());
-        newPost.setUser(new User(customUserDetails.getId())); // temporary code
-//        return new Post(postRepository.saveAndFlush(newPost));
+        newPost.setUser(new User(customUserDetails.getId()));
+        
         return postRepository.saveAndFlush(newPost);
     }
 }
