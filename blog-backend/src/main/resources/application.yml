@@ -5,14 +5,14 @@ application:
     prepStmtCacheSqlLimit: 2048
     useServerPrepStmts: true
   security:
-#    jwt:
-#      secret: 5867a8374e7c0f6284b177b48faf89e1c79d72d8
-#      token-validity-in-seconds: 86400 # 24 hour
-#      token-validity-in-seconds-for-remember-me: 2592000
+    jwt:
+      secret: 5867a8374e7c0f6284b177b48faf89e1c79d72d8
+      token-validity-in-seconds: 86400 # 24 hour
+      token-validity-in-seconds-for-remember-me: 2592000
 
-#  oauth2:
-#    authorizedRedirectUris:
-#      - http://localhost:3000/oauth2/redirect
+  oauth2:
+    authorizedRedirectUris:
+      - http://localhost:3000/oauth2/redirect
 
 spring:
   data:
@@ -53,16 +53,16 @@ spring:
   security:
     basic:
       enabled: false
-#    oauth2:
-#      client:
-#        registration:
-#          google:
-#            clientId: 259583618562-g1s3big00htpdfbj4ngmkmqlltgt97qg.apps.googleusercontent.com
-#            clientSecret: x8lusORzxUwBrbiPr7AVIfVH
-#            redirectUriTemplate: "{baseUrl}/oauth2/callback/{registrationId}"
-#            scope:
-#              - email
-#              - profile
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 259583618562-g1s3big00htpdfbj4ngmkmqlltgt97qg.apps.googleusercontent.com
+            clientSecret: x8lusORzxUwBrbiPr7AVIfVH
+            redirectUriTemplate: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - profile
   http:
     log-request-details: true
 server:
