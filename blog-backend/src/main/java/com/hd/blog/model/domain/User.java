@@ -2,6 +2,7 @@ package com.hd.blog.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.hd.blog.common.util.AuthProvider;
 import com.hd.blog.model.BaseModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +18,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.security.AuthProvider;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
@@ -52,8 +52,8 @@ public class User extends BaseModel {
 
     private String imageUrl;
 
-//    @NotNull
-//    @Enumerated(EnumType.STRING)
+    @NotNull
+    @Enumerated(EnumType.STRING)
     private AuthProvider provider;
 
     private String providerId;
@@ -108,7 +108,19 @@ public class User extends BaseModel {
         this.userName = userName;
     }
 
-    public void setEmail( String email ) {
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setProvider(AuthProvider provider) {
+        this.provider = provider;
+    }
+
+    public void setEmail( String email) {
         this.email = email;
     }
 
@@ -134,4 +146,5 @@ public class User extends BaseModel {
     public String toString() {
         return super.toString();
     }
+
 }
